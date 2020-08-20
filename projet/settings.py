@@ -75,6 +75,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'projet.wsgi.application'
 
+ASGI_APPLICATION = "projet.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
