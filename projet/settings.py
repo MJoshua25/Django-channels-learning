@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # My apps
     'chat.apps.ChatConfig',
+
+    # Websocket
+    'channels',
 ]
 
 MIDDLEWARE = [
