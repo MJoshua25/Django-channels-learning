@@ -6,6 +6,14 @@ from django.conf.urls import url
 from chat.consumers import ChatChonsumer
 
 application = ProtocolTypeRouter({
-    # Empty for now (http->django views is added by default)
-
+	# Empty for now (http->django views is added by default)
+	'websocket':AllowedHostsOriginValidator( # verification des hosts
+		AuthMiddlewareStack( # permet d'avoir les informations de l'utilisateur dans les websocket
+			URLRouter(
+				[
+					url(r"^(?P<username>[\w.@+-]+)", ChatChonsumer),
+				]
+			)
+		)
+	)
 })
