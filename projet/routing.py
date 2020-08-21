@@ -11,7 +11,7 @@ application = ProtocolTypeRouter({
 		AuthMiddlewareStack( # permet d'avoir les informations de l'utilisateur dans les websocket
 			URLRouter(
 				[
-					url(r"^(?P<username>[\w.@+-]+)", ChatChonsumer),
+					url(r"^messages/(?P<username>[\w.@+-]+)", ChatChonsumer),
 				]
 			)
 		)

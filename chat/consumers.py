@@ -14,7 +14,11 @@ class ChatChonsumer(AsyncConsumer):
 			'type': "websocket.accept"
 		})
 
-		await asyncio.sleep(10)
+		other_user = self.scope['url_route']['kwargs']['username']
+		me = self.scope['user']
+		print(me, other_user)
+
+		# await asyncio.sleep(10)
 		await self.send({
 			'type': "websocket.send",
 			'text': 'hello world'
