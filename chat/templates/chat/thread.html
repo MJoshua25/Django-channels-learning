@@ -38,7 +38,10 @@ socket.onopen = function (e) {
     formData.submit(function (event) {
         event.preventDefault()
         var msgText = msgInput.val()
-        socket.send(msgText)
+        var finalData = {
+            'message':msgText
+        }
+        socket.send(JSON.stringify(finalData))
         formData[0].reset()
     })
 }
