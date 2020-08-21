@@ -21,6 +21,7 @@
 
 <script>
 // websocket scripts
+var formData = $('#form')
 var wsStart = 'ws://'
 if (window.location.protocol === 'https:'){
     wsStart = 'wss://'
@@ -33,6 +34,10 @@ socket.onmessage = function (e) {
 }
 socket.onopen = function (e) {
     console.log("open", e)
+    formData.submit(function (event) {
+        event.preventDefault()
+        socket.send("hello backend")
+    })
 }
 socket.onerror = function (e) {
     console.log("error", e)
