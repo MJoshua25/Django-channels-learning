@@ -18,10 +18,10 @@ class ChatChonsumer(AsyncConsumer):
 		me = self.scope['user']
 		# print(me, other_user)
 		thread_obj = await self.get_thread(me, other_user)
-		# print(thread_obj)
 
-		# await asyncio.sleep(10)
+	# print(thread_obj)
 
+	# await asyncio.sleep(10)
 
 	async def websocket_receive(self, event):
 		print("received", event)
@@ -30,9 +30,14 @@ class ChatChonsumer(AsyncConsumer):
 			loaded_dict_data = json.loads(front_text)
 			msg = loaded_dict_data.get('message')
 			print(msg)
+			user = self.scope['user']
+			myResponse = {
+				'message': msg,
+				'username': user.username
+			}
 			await self.send({
 				'type': "websocket.send",
-				'text': msg
+				'text': json.dumps(myResponse)
 			})
 
 	async def websocket_disconnect(self, event):
