@@ -23,6 +23,8 @@
 // websocket scripts
 var formData = $('#form')
 var msgInput = $('#id_message')
+var chatOlder = $('#chat-items')
+
 var wsStart = 'ws://'
 if (window.location.protocol === 'https:'){
     wsStart = 'wss://'
@@ -32,6 +34,7 @@ var socket = new WebSocket(endpoint)
 
 socket.onmessage = function (e) {
     console.log("message", e)
+    chatOlder.append("<li>" + e.data + "</li>")
 }
 socket.onopen = function (e) {
     console.log("open", e)
