@@ -44,6 +44,7 @@ class ChatChonsumer(AsyncConsumer):
 				'message': msg,
 				'username': username
 			}
+			# broadcasts the message
 			await self.channel_layer.group_send(
 				self.chat_room,
 				{
@@ -53,6 +54,7 @@ class ChatChonsumer(AsyncConsumer):
 			)
 
 	async def chat_message(self, event):
+		# Send the message
 		await self.send({
 			'type': "websocket.send",
 			'text': event['text']
