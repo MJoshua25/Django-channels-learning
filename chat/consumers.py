@@ -50,8 +50,14 @@ class ChatChonsumer(AsyncConsumer):
 			}
 			await self.channel_layer.groupe_send(
 				self.chat_room,
-				new_event
+				{
+					"type": "chat_message",
+					"message": "hello world"
+				}
 			)
+
+	async def chat_message(self, event):
+		print('message', event)
 
 	async def websocket_disconnect(self, event):
 		print("disconnected", event)
