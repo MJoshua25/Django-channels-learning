@@ -40,11 +40,11 @@ class ChatChonsumer(AsyncConsumer):
 			username = 'default'
 			if user.is_authenticated:
 				username = user.username
-				await self.create_chat_message(user, msg)
 			myResponse = {
 				'message': msg,
 				'username': username
 			}
+			await self.create_chat_message(user, msg)
 			# broadcasts the message event to be send
 			await self.channel_layer.group_send(
 				self.chat_room,
