@@ -40,7 +40,7 @@ class ChatChonsumer(AsyncConsumer):
 			username = 'default'
 			if user.is_authenticated:
 				username = user.username
-				self.create_chat_message(user, msg)
+				await self.create_chat_message(user, msg)
 			myResponse = {
 				'message': msg,
 				'username': username
