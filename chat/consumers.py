@@ -18,6 +18,8 @@ class ChatChonsumer(AsyncConsumer):
 		me = self.scope['user']
 		# print(me, other_user)
 		thread_obj = await self.get_thread(me, other_user)
+		chat_room = "thread_{}".format(thread_obj.id)
+		self.chat_room = chat_room
 
 	# print(thread_obj)
 
