@@ -36,11 +36,11 @@ class ChatChonsumer(AsyncConsumer):
 		if front_text is not None:
 			loaded_dict_data = json.loads(front_text)
 			msg = loaded_dict_data.get('message')
-			print(msg)
 			user = self.scope['user']
 			username = 'default'
 			if user.is_authenticated:
 				username = user.username
+				self.create_chat_message(user, msg)
 			myResponse = {
 				'message': msg,
 				'username': username
