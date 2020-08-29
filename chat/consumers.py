@@ -44,10 +44,14 @@ class ChatChonsumer(AsyncConsumer):
 				'message': msg,
 				'username': username
 			}
-			await self.send({
+			new_event = {
 				'type': "websocket.send",
 				'text': json.dumps(myResponse)
-			})
+			}
+			await self.channel_layer.groupe_send(
+				self.chat_room,
+				new_event
+			)
 
 	async def websocket_disconnect(self, event):
 		print("disconnected", event)
