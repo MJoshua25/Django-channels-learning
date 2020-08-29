@@ -32,7 +32,7 @@ if (window.location.protocol === 'https:'){
     wsStart = 'wss://'
 }
 var endpoint = wsStart + window.location.host + window.location.pathname
-var socket = new WebSocket(endpoint)
+var socket = new ReconnectingWebSocket(endpoint)
 
 socket.onmessage = function (e) {
     console.log("message", e)
