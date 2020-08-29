@@ -37,7 +37,9 @@ var socket = new WebSocket(endpoint)
 socket.onmessage = function (e) {
     console.log("message", e)
     chatDataMsg = JSON.parse(e.data)
-    chatOlder.append("<li>" + chatDataMsg.message + " via " + chatDataMsg.username + "</li>")
+    if (chatDataMsg.username !== me){
+        chatOlder.append("<li>" + chatDataMsg.message + " via " + chatDataMsg.username + "</li>")
+    }
 }
 socket.onopen = function (e) {
     console.log("open", e)
