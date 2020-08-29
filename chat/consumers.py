@@ -31,9 +31,12 @@ class ChatChonsumer(AsyncConsumer):
 			msg = loaded_dict_data.get('message')
 			print(msg)
 			user = self.scope['user']
+			username = 'default'
+			if user.is_authenticated:
+				username = user.username
 			myResponse = {
 				'message': msg,
-				'username': user.username
+				'username': username
 			}
 			await self.send({
 				'type': "websocket.send",
