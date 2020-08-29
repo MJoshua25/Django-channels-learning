@@ -48,7 +48,7 @@ class ChatChonsumer(AsyncConsumer):
 				'type': "websocket.send",
 				'text': json.dumps(myResponse)
 			}
-			await self.channel_layer.groupe_send(
+			await self.channel_layer.group_send(
 				self.chat_room,
 				{
 					"type": "chat_message",
