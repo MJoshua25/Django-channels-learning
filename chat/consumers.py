@@ -44,7 +44,7 @@ class ChatChonsumer(AsyncConsumer):
 				'message': msg,
 				'username': username
 			}
-			# broadcasts the message
+			# broadcasts the message event to be send
 			await self.channel_layer.group_send(
 				self.chat_room,
 				{
