@@ -15,6 +15,7 @@ class ChatChonsumer(AsyncConsumer):
 		me = self.scope['user']
 		# print(me, other_user)
 		thread_obj = await self.get_thread(me, other_user)
+		self.thread_obj = thread_obj
 		chat_room = "thread_{}".format(thread_obj.id)
 		self.chat_room = chat_room
 		await self.channel_layer.group_add(
@@ -66,3 +67,7 @@ class ChatChonsumer(AsyncConsumer):
 	@database_sync_to_async
 	def get_thread(self, user, other_username):
 		return Thread.objects.get_or_new(user, other_username)[0]
+
+	@database_sync_to_async
+	def create_chat_message(self, me,message):
+		return ChatMessage.objects.create(thread=self.thread_obj, user=me, message=message)
